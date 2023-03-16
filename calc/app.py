@@ -1,26 +1,40 @@
 from flask import Flask, request
-
+from operations import add, sub, mult, div
 app = Flask(__name__)# Put your app in here.
 
-# Calc
-# Build a simple calculator with Flask, which uses URL query parameters to get the numbers to calculate with.
 
-# Make a Flask app that responds to 4 different routes. Each route does a math operation with two numbers, a and b, which will be passed in as URL GET-style query parameters.
-
-# /add
-# Adds a and b and returns result as the body.
-# /sub
-# Same, subtracting b from a.
-# /mult
-# Same, multiplying a and b.
-# /div
-# Same, dividing a by b.
-# For example, a URL like http://localhost:5000/add?a=10&b=20 should return a string response of exactly 30.
-
-@app.route('/add', methods['GET'])
-def add(a, b):
-    """Add a and b."""
-    a = request.args["a"]
-    b = request.args["b"]
+@app.route('/add')
+def do_add():
+    """call function Add a and b."""
+    a = int(request.args["a"])
+    b = int(request.args["b"])
     
-    return a 
+    result = add(a, b)
+    return str(result)
+
+@app.route('/sub')
+def do_sub():
+    """call function turn strings to int to subtract a and b."""
+    a = int(request.args["a"])
+    b = int(request.args["b"])
+    
+    result = sub(a, b)
+    return str(result)
+
+@app.route('/mult')
+def do_mult():
+    """call function turn strings to int to multiply a and b."""
+    a = int(request.args["a"])
+    b = int(request.args["b"])
+    
+    result = mult(a, b)
+    return str(result)
+
+@app.route('/div')
+def do_div():
+    """call function turn strings to int to divide a and b."""
+    a = int(request.args["a"])
+    b = int(request.args["b"])
+    
+    result = div(a, b)
+    return str(result)
